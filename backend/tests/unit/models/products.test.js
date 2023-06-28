@@ -2,6 +2,7 @@ const sinon = require('sinon');
 const { expect } = require('chai');
 const connection = require('../../../src/models/connection');
 const mock = require('../mocks/products.mock');
+const productsModel = require('../../../src/models');
 
 describe('Testes do path /products - CAMADA MODEL', function () {
   it('GET /products - Lista todos os produtos', async function () {
