@@ -3,7 +3,7 @@ const { productsController } = require('../controllers');
 
 route.get(
   '/',
-  productsController.getAllProducts,
+  productsController.allProducts, 
 );
 
 module.exports = route;
