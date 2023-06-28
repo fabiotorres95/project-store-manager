@@ -20,7 +20,19 @@ const allProductsMocked = [
   },
 ];
 
+const oneProductFromDB = {
+  id: 1,
+  name: 'Martelo de Thor',
+};
+
+const oneProductMocked = {
+  id: 1,
+  name: 'Martelo de Thor',
+};
+
 module.exports = {
   allProductsFromDB,
   allProductsMocked,
+  oneProductFromDB,
+  oneProductMocked,
 };
