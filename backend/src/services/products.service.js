@@ -6,6 +6,13 @@ const getAllProducts = async () => {
   return { status: 'SUCCESSFULL', data };
 };
 
+const getProductById = async (id) => {
+  const data = await productsModel.findById(id);
+
+  return { status: 'SUCCESSFULL', data };
+};
+
 module.exports = {
   getAllProducts,
+  getProductById,
 };
