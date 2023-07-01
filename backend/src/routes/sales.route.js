@@ -10,3 +10,5 @@ route.get(
   '/:id',
   salesController.saleById,
 );
+
+module.exports = route;
