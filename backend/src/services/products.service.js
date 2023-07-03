@@ -1,5 +1,7 @@
 const { productsModel } = require('../models');
 
+let nextId = 4;
+
 const getAllProducts = async () => {
   const data = await productsModel.findAll();
 
@@ -12,7 +14,16 @@ const getProductById = async (id) => {
   return { status: 'SUCCESSFULL', data };
 };
 
+const postNewProduct = async (newData) => {
+  const newDataWithId = { id: nextId, ...newData };
+  nextId += 1;
+  await productsModel.addNewProduct(newDataWithId);
+
+  return { status: 'CREATED', newDataWithId };
+};
+
 module.exports = {
   getAllProducts,
   getProductById,
+  postNewProduct,
 };
