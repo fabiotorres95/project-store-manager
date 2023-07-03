@@ -28,7 +28,7 @@ describe('Testes do path /products - CAMADA MODEL', function () {
       .onFirstCall()
       .resolves([mock.allProductsFromDB])
       .onSecondCall()
-      .resolves(mock.newProductMocked)
+      .resolves(mock.newProductFromBody)
       .onThirdCall()
       .resolves([mock.allNewProductsMocked]);
 
