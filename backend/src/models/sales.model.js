@@ -29,7 +29,12 @@ const findById = async (id) => {
   return camelize(sale);
 };
 
+const insert = async (_newData) => {
+  
+};
+
 module.exports = {
   findAll,
   findById,
+  insert,
 };
