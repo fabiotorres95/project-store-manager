@@ -17,9 +17,9 @@ const getProductById = async (id) => {
 const postNewProduct = async (newData) => {
   const newDataWithId = { id: nextId, ...newData };
   nextId += 1;
-  await productsModel.addNewProduct(newDataWithId);
+  const data = await productsModel.insert(newDataWithId);
 
-  return { status: 'CREATED', newDataWithId };
+  return { status: 'CREATED', data };
 };
 
 module.exports = {

@@ -18,7 +18,7 @@ const productById = async (req, res) => {
 };
 
 const newProduct = async (req, res) => {
-  const { newData } = req.body;
+  const newData = req.body;
   const { data } = await productsServices.postNewProduct(newData);
 
   return res.status(201).json(data);
