@@ -15,7 +15,7 @@ const getById = async (id) => {
 };
 
 const postNewSale = async (newData) => {
-  const newDataWithId = { id: nextId, ...newData };
+  const newDataWithId = { id: nextId, itemsSold: newData };
   nextId += 1;
 
   const data = await salesModel.insert(newDataWithId);
