@@ -23,6 +23,31 @@ describe('Testes do path /products - CAMADA MODEL', function () {
     expect(product).to.deep.equal(mock.oneProductMocked);
   });
 
+  it('POST /products - Adiciona um produto novo', async function () {
+    sinon.stub(connection, 'execute')
+      .onFirstCall()
+      .resolves([mock.allProductsFromDB])
+      .onSecondCall()
+      .resolves(mock.newProductMocked)
+      .onThirdCall()
+      .resolves([mock.allNewProductsMocked]);
+
+      const oldDB = await productsModel.findAll();
+
+      expect(oldDB).to.be.an('array');
+      expect(oldDB).to.have.lengthOf(2);
+
+      const newData = await productsModel.insert(mock.newProductFromBody);
+
+      expect(newData).to.be.an('object');
+      expect(newData).to.deep.equal(mock.newProductMocked);
+
+      const newDB = await productsModel.findAll();
+
+      expect(newDB).to.be.an('array');
+      expect(newDB).to.deep.equal(mock.allNewProductsMocked);
+  });
+
   afterEach(function () {
     sinon.restore();
   });
