@@ -38,8 +38,11 @@ const productIdExists = async (req, res, next) => {
   const products = await productsModel.findAll();
 
   const ids = products.map((obj) => obj.id);
+  console.log(ids);
+  console.log(data);
 
-  const result = data.find((obj) => !ids.includes(obj.id));
+  const result = data.find((obj) => !ids.includes(obj.productId));
+  console.log(result);
   if (result) {
     return res.status(404).json({ message: 'Product not found' });
   }
