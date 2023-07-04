@@ -35,12 +35,12 @@ const insert = async (newData) => {
     'INSERT INTO sales (date) VALUE (NOW())',
   );
 
-  await itemsSold.map(async (obj) => {
+  await Promise.all(itemsSold.map(async (obj) => {
     await connection.execute(
       'INSERT INTO sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)',
       [Number(id), Number(obj.productId), Number(obj.quantity)],
     );
-  });
+  }));
 
   return newData;
 };
