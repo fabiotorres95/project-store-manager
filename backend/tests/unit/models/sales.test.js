@@ -22,7 +22,28 @@ describe('Testes do path /sales - CAMADA MODEL', function () {
     expect(sale).to.be.an('array');
     expect(sale).to.deep.equal(mock.oneSaleMocked);
   });
+  
+  it('POST /sales - adiciona uma nova venda', async function () {
+    sinon.stub(connection, 'execute').resolves([mock.allSalesFromDB]);
 
+    const oldDB = await salesModel.findAll();
+    expect(oldDB).to.have.lengthOf(3);
+
+    sinon.restore();
+    sinon.stub(connection, 'execute').resolves(mock.newSaleMocked);
+
+    const newSale = await salesModel.insert(mock.newSaleFromBody);
+    expect(mock.newSaleFromBody).to.deep.equal(newSale);
+
+    sinon.restore();
+    sinon.stub(connection, 'execute').resolves([mock.allNewSalesFromDB]);
+
+    const newDB = await salesModel.findAll();
+    expect(newDB).to.have.lengthOf(5);
+    expect(newDB[newDB.length - 1].productId)
+      .to.deep.equal(newSale.itemsSold[newSale.itemsSold.length - 1].productId);
+  });
+  
   afterEach(function () {
     sinon.restore();
   });
