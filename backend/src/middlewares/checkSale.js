@@ -35,14 +35,21 @@ const quantitySize = (req, res, next) => {
 
 const productIdExists = async (req, res, next) => {
   const data = req.body;
+  let newData = [];
+  if (!Array.isArray(data)) {
+    data.productId = Number(req.params.id);
+    newData.push(data);
+  } else {
+    newData = data;
+  }
+
+  console.log(newData);
+
   const products = await productsModel.findAll();
 
   const ids = products.map((obj) => obj.id);
-  console.log(ids);
-  console.log(data);
+  const result = newData.find((obj) => !ids.includes(obj.productId));
 
-  const result = data.find((obj) => !ids.includes(obj.productId));
-  console.log(result);
   if (result) {
     return res.status(404).json({ message: 'Product not found' });
   }

@@ -25,7 +25,6 @@ const postNewProduct = async (newData) => {
 const putProduct = async (id, newData) => {
   const { name } = newData;
   const newDataWithId = { id, name };
-  console.log(newDataWithId);
   const data = await productsModel.update(newDataWithId);
 
   return { status: 'SUCCESSFULL', data };

@@ -1,6 +1,6 @@
 const route = require('express').Router();
 const { productsController } = require('../controllers');
-const { checkName } = require('../middlewares');
+const { checkName, checkSale } = require('../middlewares');
 
 route.get(
   '/',
@@ -21,6 +21,9 @@ route.post(
 
 route.put(
   '/:id',
+  checkName.required,
+  checkName.hasLength5,
+  checkSale.productIdExists,
   productsController.updateProduct,
 );
 
