@@ -26,8 +26,13 @@ const insert = async (newData) => {
   return newData;
 };
 
+const update = async (_newData) => {
+  
+};
+
 module.exports = {
   findAll,
   findById,
   insert,
+  update,
 };

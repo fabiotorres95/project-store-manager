@@ -22,8 +22,16 @@ const postNewProduct = async (newData) => {
   return { status: 'CREATED', data };
 };
 
+const putProduct = async (id, newData) => {
+  const newDataWithId = { id, ...newData };
+  const data = await productsModel.update(newDataWithId);
+
+  return { status: 'SUCCESSFULL', data };
+};
+
 module.exports = {
   getAllProducts,
   getProductById,
   postNewProduct,
+  putProduct,
 };
